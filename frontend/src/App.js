@@ -1,10 +1,13 @@
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from './logo.svg';
 import './App.css';
+import TopNavBar from "./components/TopNavbar"
 
 function App() {
   return (
     <div className="App">
+      <TopNavBar />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>

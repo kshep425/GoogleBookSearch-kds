@@ -11,6 +11,17 @@ const SearchForm = () => {
     setSearchInput(event.target.value)
     console.log(searchInput);
   }
+  const query = "https://"
+  function handleClick(event){
+    event.preventDefault();
+    console.log("Search Clicked")
+    console.log(searchInput)
+    ((searchInput)
+      ? fetch(query + searchInput)
+      : null //(<div className="danger"><p>Please input search text</p></div>)
+    )
+  }
+
   return (
     <Container>
       <Card border="dark" className="my-3">
@@ -21,8 +32,8 @@ const SearchForm = () => {
           <Form>
             <Form.Group>
               <FormControl type="text" placeholder="Search" className="mr-sm-2" onChange={e => {handleChange(e)}}
-              value={searchInput}/>
-              <Button className="justify-content-end" variant="outline-dark">Search</Button>
+              value={searchInput} />
+              <Button className="justify-content-end" variant="outline-dark" onClick={e => {handleClick(e)}}>Search</Button>
             </Form.Group>
           </Form>
         </Card.Body>

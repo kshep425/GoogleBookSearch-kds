@@ -6,6 +6,7 @@ import TopNavBar from "./components/TopNavbar"
 import BookSearchHeader from "./components/BookSearchHeader";
 import SearchForm from "./components/SearchForm";
 import SearchResults from "./components/SearchResults";
+import SavedResults from "./components/SavedResults"
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <BookSearchHeader />
       <SearchForm />
       <SearchResults />
+      <SavedResults />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>

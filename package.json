@@ -1,0 +1,35 @@
+{
+  "name": "googlebooksearch",
+  "version": "1.0.0",
+  "description": "React app for searching and saving google books",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "node server.js",
+    "start:dev": "concurrently \"nodemon --ignore 'frontend/*'\" \"npm run frontend\"",
+    "frontend": "cd frontend && npm run start",
+    "install": "cd frontend && npm install",
+    "build": "cd frontend && npm run build",
+    "heroku-postbuild": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kshep425/GoogleBookSearch-kds.git"
+  },
+  "keywords": [
+    "react",
+    "google"
+  ],
+  "author": "Keisha Shepherd",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kshep425/GoogleBookSearch-kds/issues"
+  },
+  "homepage": "https://github.com/kshep425/GoogleBookSearch-kds#readme",
+  "dependencies": {
+    "concurrently": "^5.1.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1"
+  }
+}

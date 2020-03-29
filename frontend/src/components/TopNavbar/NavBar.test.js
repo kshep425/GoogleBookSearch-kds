@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 //import App from './App';
-import TopNavBar from "./components/TopNavbar"
+import TopNavBar from "./index"
 test('renders Keisha\'s Google Book Search link', () => {
   const { getByText } = render(<TopNavBar />);
   const linkElement = getByText(/Keisha's Google Book Search/i);

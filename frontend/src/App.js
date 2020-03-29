@@ -3,11 +3,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from './logo.svg';
 import './App.css';
 import TopNavBar from "./components/TopNavbar"
-
+import BookSearchHeader from "./components/BookSearchHeader"
+import SearchForm from "./components/SearchForm"
 function App() {
   return (
     <div className="App">
       <TopNavBar />
+      <BookSearchHeader />
+      <SearchForm />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>

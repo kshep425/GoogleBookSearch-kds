@@ -1,16 +1,26 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button"
 import Form from "react-bootstrap/Form"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
+import ToggleButton from 'react-bootstrap/ToggleButton'
+import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import "./style.css"
 const Book = (props) => {
 
-  console.log(props.bookresult)
+  // console.log(props.bookresult)
   const { authors, description, id, image, link, title } = props.bookresult;
   const buttonText = props.buttontext
+  const savedBook = props.savedBook;
+  const isSavedBook = props.isSavedBook;
 
+  const [saved, setSaved] = useState(false)
+
+  const handleChange = (val) => {
+    setSaved(!val);
+    console.log(saved)
+  }
   return (
     <Card className="text-left my-2" key={id}>
       <Card.Body>
@@ -22,7 +32,12 @@ const Book = (props) => {
             <Form inline>
               <Form.Group >
                 <Card.Link href={link}><Button className="m-1" variant="outline-dark" bookid={id}>View</Button></Card.Link>
-                <Button variant="outline-dark" bookid={id}>{buttonText}</Button>
+                {(buttonText === "Save" || buttonText === "Saved")
+                  ? <ButtonGroup toggle className="mb-2" ref={savedBook} value={props.bookresult} onChange={handleChange}>
+                      <ToggleButton type="checkbox" ref={isSavedBook} value={saved} bookid={id}>{buttonText}</ToggleButton>
+                    </ButtonGroup>
+                  : <Button variant="outline-dark" bookid={id}>{buttonText}</Button>
+                }
               </Form.Group>
             </Form>
           </Col>

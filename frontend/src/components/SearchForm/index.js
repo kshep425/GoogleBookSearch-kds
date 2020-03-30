@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button"
 import FormControl from "react-bootstrap/FormControl"
 
 const SearchForm = (props) => {
-  const [searchInput, setSearchInput] = useState("Harriet+Jacobs+Slave+Girl")
+  const [searchInput, setSearchInput] = useState("")
 
   function handleChange (event) {
     setSearchInput(event.target.value)

@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import Book from "../Book"
 import get from "lodash/get"
 
 const SearchResults = (props) => {
-  console.log(props)
+  //console.log(props)
   const results = props.searchResult || []
-  console.log(results)
+  const savedBook = props.savedBook
+  const isSavedBook = props.isSavedBook
+ // console.log(results)
 
   return (
     <div>
@@ -26,9 +28,9 @@ const SearchResults = (props) => {
                   link: get(result, 'volumeInfo.previewLink'),
                   title: get(result, 'volumeInfo.title')
                 }
-                console.log(bookResult)
+//                console.log(bookResult)
                 return (
-                  <Book key={bookResult.id} bookresult={bookResult} buttontext="Save"></Book>
+                  <Book key={bookResult.id} bookresult={bookResult} buttontext="Save" savedBook={savedBook} isSavedBook={isSavedBook}></Book>
                 )
               }) : null}
           </Card.Body>

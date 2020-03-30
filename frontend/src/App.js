@@ -15,16 +15,24 @@ import get from "lodash/get";
 
 function App() {
   const searchInput = useRef();
-  const savedBook = useRef();
-  const isSavedBook = useRef();
+  const savedBook = useRef({});
   const [searchResult, setSearchResult] = useState([]);
+  const [savedBooks, setSavedBooks] = useState([]);
+  const [savedBooksLength, setSavedBooksLength] = useState(0)
   // const [loading, setLoading] = useState(true);
   // const [errorMessage, setErrorMessage] = useState(null);
 
-  useEffect(()=>{
+  useEffect(() => {
+    console.log(savedBooksLength)
+  }, [savedBooksLength])
+
+  useEffect(() => {
+    console.log(savedBooks)
+  }, [savedBooks])
+
+  useEffect(() => {
     console.log(searchInput.current.value)
   }, [searchResult])
-
 
   const search = e => {
     console.log("Search Clicked")
@@ -38,19 +46,35 @@ function App() {
       let query = `https://www.googleapis.com/books/v1/volumes?key=${process.env.REACT_APP_GOOGLE_API_KEY}&q=${searchInputValue}`
       console.log(query)
       window.fetch(query)
-      .then((result) => {
-        return result.json()
-      }).then(result => {
-        console.log(result)
-        setSearchResult(result);
-        // setLoading(false)
-      })
-      .catch((err) => {
-        console.log(err)
-        // setErrorMessage("Error occured")
-        // setLoading(false)
-      })
+        .then((result) => {
+          return result.json()
+        }).then(result => {
+          console.log(result)
+          setSearchResult(result);
+          // setLoading(false)
+        })
+        .catch((err) => {
+          console.log(err)
+          // setErrorMessage("Error occured")
+          // setLoading(false)
+        })
     }
+  }
+
+  function addSavedBook(book) {
+    console.log("Add Saved Book");
+    console.log(book);
+    if (book) {
+      savedBooks.push(book);
+      setSavedBooks(savedBooks);
+      setSavedBooksLength(savedBooks.length)
+      console.log(savedBooks);
+    }
+  }
+
+  function removeSavedBook(book) {
+    console.log("Remove Saved Book");
+    console.log(book);
   }
 
   return (
@@ -58,8 +82,8 @@ function App() {
       <TopNavBar />
       <BookSearchHeader />
       <SearchForm searchInput={searchInput} handleClick={search} />
-      <SearchResults searchResult={searchResult} savedBook={savedBook} isSavedBook={isSavedBook}/>
-      <SavedResults />
+      <SearchResults searchResult={searchResult} savedBook={savedBook} addSavedBook={addSavedBook} />
+      <SavedResults savedResults={savedBooks} />
     </div>
   );
 }

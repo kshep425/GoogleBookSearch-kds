@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import Book from "../Book"
-import get from "lodash/get"
 
 const SavedResults = (props) => {
-
   const results = props.savedResults || [];
   console.log(results)
 
@@ -15,23 +13,13 @@ const SavedResults = (props) => {
         <Card border="dark" className="my-3">
           <Card.Header>Saved Results</Card.Header>
           <Card.Body>
-            {(results && results.items) ?
-             results.items.map((result) => {
-              // console.log(result)
-              const bookResult = {
-                id: result.id,
-                authors: (get(result, 'volumeInfo.authors')  || []).join(", "),
-                description: get(result, 'volumeInfo.description'),
-                image: get(result, "volumeInfo.imageLinks.thumbnail"),
-                link: get(result,'volumeInfo.previewLink'),
-                title: get(result, 'volumeInfo.title')
-              }
-
-              console.log(bookResult)
-              return (
-                <Book key={bookResult.id} bookresult={bookResult} buttontext="Delete"></Book>
-              )
-            }): null}
+            {(results) ?
+              results.map((book) => {
+                console.log(book)
+                return (
+                  <Book key={book.id} bookresult={book} buttontext="Delete"></Book>
+                )
+              }) : null}
           </Card.Body>
         </Card>
       </Container>

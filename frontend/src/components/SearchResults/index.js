@@ -7,9 +7,8 @@ import get from "lodash/get"
 const SearchResults = (props) => {
   //console.log(props)
   const results = props.searchResult || []
-  const savedBook = props.savedBook
-  const isSavedBook = props.isSavedBook
- // console.log(results)
+  const addSavedBook = props.addSavedBook
+  // console.log(results)
 
   return (
     <div>
@@ -28,9 +27,14 @@ const SearchResults = (props) => {
                   link: get(result, 'volumeInfo.previewLink'),
                   title: get(result, 'volumeInfo.title')
                 }
-//                console.log(bookResult)
+                //                console.log(bookResult)
                 return (
-                  <Book key={bookResult.id} bookresult={bookResult} buttontext="Save" savedBook={savedBook} isSavedBook={isSavedBook}></Book>
+                  <Book
+                    key={bookResult.id}
+                    bookresult={bookResult}
+                    buttontext="Save"
+                    addSavedBook={addSavedBook}
+                  />
                 )
               }) : null}
           </Card.Body>

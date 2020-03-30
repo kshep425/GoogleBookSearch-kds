@@ -1,26 +1,26 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button"
 import Form from "react-bootstrap/Form"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
-import ToggleButton from 'react-bootstrap/ToggleButton'
-import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import "./style.css"
+
 const Book = (props) => {
 
   // console.log(props.bookresult)
   const { authors, description, id, image, link, title } = props.bookresult;
+  console.log(props.bookresult)
   const buttonText = props.buttontext
-  const savedBook = props.savedBook;
-  const isSavedBook = props.isSavedBook;
+  console.log(props)
+  console.log(typeof props.addSavedBook)
 
-  const [saved, setSaved] = useState(false)
-
-  const handleChange = (val) => {
-    setSaved(!val);
-    console.log(saved)
+  const saveBook = (event) => {
+    event.preventDefault();
+    console.log(event);
+    props.addSavedBook(props.bookresult)
   }
+
   return (
     <Card className="text-left my-2" key={id}>
       <Card.Body>
@@ -31,13 +31,10 @@ const Book = (props) => {
           <Col>
             <Form inline>
               <Form.Group >
-                <Card.Link href={link}><Button className="m-1" variant="outline-dark" bookid={id}>View</Button></Card.Link>
-                {(buttonText === "Save" || buttonText === "Saved")
-                  ? <ButtonGroup toggle className="mb-2" ref={savedBook} value={props.bookresult} onChange={handleChange}>
-                      <ToggleButton type="checkbox" ref={isSavedBook} value={saved} bookid={id}>{buttonText}</ToggleButton>
-                    </ButtonGroup>
-                  : <Button variant="outline-dark" bookid={id}>{buttonText}</Button>
-                }
+                <Card.Link href={link}>
+                  <Button className="m-1" variant="outline-dark" bookid={id}>View</Button>
+                </Card.Link>
+                <Button className="m-1" variant="outline-dark" onClick={saveBook} value={props.bookresult}>{buttonText}</Button>
               </Form.Group>
             </Form>
           </Col>

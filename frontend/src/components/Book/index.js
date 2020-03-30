@@ -7,7 +7,7 @@ import Col from "react-bootstrap/Col"
 import "./style.css"
 const Book = (props) => {
 
-  console.log(props.bookResult)
+  console.log(props.bookresult)
   const { authors, description, id, image, link, title } = props.bookresult;
   const buttonText = props.buttontext
 
@@ -29,7 +29,7 @@ const Book = (props) => {
         </Row>
         <Row>
           <Col>
-            <Card.Subtitle>Written by: {authors}</Card.Subtitle>
+            <Card.Subtitle key={id}>Written by: {authors}</Card.Subtitle>
           </Col>
         </Row>
         <Row>

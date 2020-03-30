@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import Book from "../Book"
-import testResults from "./quiltingTestResults"
-
 import get from "lodash/get"
-const SavedResults = () => {
 
-  const [results, setResults] = useState(testResults);
+const SavedResults = (props) => {
+
+  const results = props.savedResults || [];
+  console.log(results)
 
   return (
     <div>
@@ -29,7 +29,7 @@ const SavedResults = () => {
 
               console.log(bookResult)
               return (
-                <Book bookresult={bookResult} buttontext="Delete"></Book>
+                <Book key={bookResult.id} bookresult={bookResult} buttontext="Delete"></Book>
               )
             }): null}
           </Card.Body>

@@ -4,8 +4,10 @@ import Card from "react-bootstrap/Card";
 import Book from "../Book"
 
 const SavedResults = (props) => {
+  console.log(props)
   const results = props.savedResults || [];
-  console.log(results)
+  console.log(results);
+  const removeSavedBook = props.removeSavedBook;
 
   return (
     <div>
@@ -17,7 +19,7 @@ const SavedResults = (props) => {
               results.map((book) => {
                 console.log(book)
                 return (
-                  <Book key={book.id} bookresult={book} buttontext="Delete"></Book>
+                  <Book key={book.id} bookresult={book} buttontext="Delete" removeSavedBook={removeSavedBook}></Book>
                 )
               }) : null}
           </Card.Body>

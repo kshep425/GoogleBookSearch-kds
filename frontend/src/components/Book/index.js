@@ -15,10 +15,12 @@ const Book = (props) => {
   console.log(props)
   console.log(typeof props.addSavedBook)
 
-  const saveBook = (event) => {
+  const removeOrSaveBook = (event) => {
     event.preventDefault();
     console.log(event);
-    props.addSavedBook(props.bookresult)
+    (buttonText === "Save")
+    ? props.addSavedBook(props.bookresult)
+    : props.removeSavedBook(props.bookresult)
   }
 
   return (
@@ -34,7 +36,7 @@ const Book = (props) => {
                 <Card.Link href={link}>
                   <Button className="m-1" variant="outline-dark" bookid={id}>View</Button>
                 </Card.Link>
-                <Button className="m-1" variant="outline-dark" onClick={saveBook} value={props.bookresult}>{buttonText}</Button>
+                <Button className="m-1" variant="outline-dark" onClick={removeOrSaveBook} value={props.bookresult}>{buttonText}</Button>
               </Form.Group>
             </Form>
           </Col>

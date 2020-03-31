@@ -75,6 +75,12 @@ function App() {
   function removeSavedBook(book) {
     console.log("Remove Saved Book");
     console.log(book);
+    // get index of object with id:37
+    var removeIndex = savedBooks.map(function(item) { return item.id; }).indexOf(book.id);
+    // remove object
+    savedBooks.splice(removeIndex, 1)
+    setSavedBooks(savedBooks);
+
   }
 
   return (
@@ -83,7 +89,7 @@ function App() {
       <BookSearchHeader />
       <SearchForm searchInput={searchInput} handleClick={search} />
       <SearchResults searchResult={searchResult} savedBook={savedBook} addSavedBook={addSavedBook} />
-      <SavedResults savedResults={savedBooks} />
+      <SavedResults savedResults={savedBooks} removeSavedBook={removeSavedBook}/>
     </div>
   );
 }
